@@ -1546,7 +1546,7 @@
       function createApiProxy(onSuccess, onFailure) {
         return {
           getCategoriesList: () => executeApiCall('getCategoriesList', {}, onSuccess, onFailure),
-          getProductsForCategory: (cat) => executeApiCall('getProductsForCategory', {categoryName: cat}, onSuccess, onFailure),
+          getCategoryProducts: (cat) => executeApiCall('getCategoryProducts', {categoryName: cat}, onSuccess, onFailure),
           requestL1Update: (url, cat) => executeApiCall('requestL1Update', {url: url, category: cat}, onSuccess, onFailure),
           exportProductsJson: (data) => executeApiCall('exportProductsJson', data, onSuccess, onFailure),
           getCategoryCountsBatch: (names) => executeApiCall('getCategoryCountsBatch', {names: names}, onSuccess, onFailure),
