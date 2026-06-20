@@ -107,7 +107,7 @@
       width:100%;
       max-width:none;
       margin:0;
-      padding:24px 14px 80px;
+      padding:10px 14px 80px;
     }
 
     .hero{
@@ -1413,14 +1413,14 @@
       .sync-btn{width:100%}
     }
   </style>
-</head>
-
-<body>
-  <header class="topbar">
+<header class="topbar">
     <div class="topbar-inner">
-      <div class="logo">
-        AMIT IT SOLUTIONS
-        <small>Advanced GeM Comparison Portal</small>
+      <div class="logo" style="display:flex; align-items:center; gap: 15px; text-align: left;">
+        <button id="topbarBackBtn" class="back-btn hidden" onclick="backToCategories()" style="padding: 6px 12px; font-size: 13px; box-shadow: none;">← Back</button>
+        <div>
+          AMIT IT SOLUTIONS<br>
+          <small>Advanced GeM Comparison Portal</small>
+        </div>
       </div>
 
       <div class="global-search">
@@ -1481,15 +1481,13 @@
     </section>
 
     <section id="productView" class="hidden">
-      <div class="toolbar">
-        <div class="tools-left" style="align-items:flex-start; flex-direction:column; gap:12px; width:100%;">
-          <div style="display:flex; align-items:center; gap:12px;">
-            <button class="back-btn" onclick="backToCategories()">← Back to Categories</button>
+      <div class="toolbar" style="margin-bottom: 8px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; width: 100%; flex-wrap: wrap; gap: 10px;">
+          <span class="category-title" id="categoryTitle" style="font-size: 18px; margin: 0;"></span>
+          <div style="display:flex; align-items:center; gap:10px; flex-wrap: wrap;">
             <button class="small-btn mobile-filter-btn" onclick="toggleFilters(true)">Filters</button>
-            <span class="category-title" id="categoryTitle" style="margin-left: 10px;"></span>
+            <div id="activeFiltersContainer"></div>
           </div>
-          <!-- Active Filter Pills Container -->
-          <div id="activeFiltersContainer" style="width:100%;"></div>
         </div>
 
         <div class="tools-right" style="margin-top:10px;">
@@ -3266,11 +3264,16 @@
       if(e.target === document.getElementById("modal")) closeModal();
     };
 
-    function showOnly(id){
-      ["categoryView","productView"].forEach(x => {
-        document.getElementById(x).classList.toggle("hidden", x !== id);
-      });
-    }
+      function showOnly(id){
+        ["categoryView","productView"].forEach(x => {
+          document.getElementById(x).classList.toggle("hidden", x !== id);
+        });
+        if(id === "productView") {
+          document.getElementById("topbarBackBtn").classList.remove("hidden");
+        } else {
+          document.getElementById("topbarBackBtn").classList.add("hidden");
+        }
+      }
 
     function showLoader(text){
       document.getElementById("loader").classList.remove("hidden");
