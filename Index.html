@@ -1412,7 +1412,167 @@
 
       .sync-btn{width:100%}
     }
+  
+
+    /* =========================================================
+       UI FINAL SPACE + CARD VISIBILITY FIX
+       Purpose: remove blank area above category cards and stop cards
+       from getting hidden/cut. No data/API/business logic changed.
+       ========================================================= */
+
+    html, body{
+      height:auto;
+      min-height:100%;
+      overflow-x:hidden;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:100;
+    }
+
+    .topbar-inner{
+      padding:8px 16px;
+      min-height:58px;
+    }
+
+    .global-search input{
+      padding:11px 14px;
+    }
+
+    .sync-btn{
+      height:40px;
+    }
+
+    .wrap{
+      padding:6px 14px 50px !important;
+    }
+
+    .hero,
+    #loader.hidden,
+    #loader[style*="display: none"]{
+      display:none !important;
+      height:0 !important;
+      min-height:0 !important;
+      max-height:0 !important;
+      padding:0 !important;
+      margin:0 !important;
+      border:0 !important;
+      overflow:hidden !important;
+      box-shadow:none !important;
+    }
+
+    #categoryView{
+      margin:0 !important;
+      padding:0 !important;
+    }
+
+    .gem-category-shell{
+      margin-top:0 !important;
+      border-radius:6px;
+      overflow:visible !important;
+    }
+
+    .gem-category-toolbar{
+      position:relative !important;
+      top:auto !important;
+      min-height:48px !important;
+      padding:7px 22px !important;
+      margin:0 !important;
+      z-index:10;
+    }
+
+    .gem-card-area{
+      padding:12px 23px 20px !important;
+      margin:0 !important;
+    }
+
+    .category-grid{
+      gap:16px !important;
+      align-items:stretch;
+    }
+
+    .category-card{
+      height:auto !important;
+      min-height:176px !important;
+      padding:16px 18px 14px !important;
+      overflow:visible !important;
+    }
+
+    .category-card-top{
+      min-height:58px !important;
+    }
+
+    .category-card-name{
+      max-height:none !important;
+      min-height:40px !important;
+      -webkit-line-clamp:2;
+    }
+
+    .category-card-count{
+      margin-top:5px !important;
+    }
+
+    .category-card-mid{
+      margin-top:10px !important;
+    }
+
+    .category-card-updated{
+      margin-top:12px !important;
+      white-space:normal !important;
+    }
+
+    .gem-pagination{
+      margin-top:8px !important;
+    }
+
+    /* Product cards: keep price and action buttons visible */
+    .grid{
+      align-items:stretch;
+    }
+
+    .card{
+      height:auto !important;
+      min-height:520px !important;
+      overflow:visible !important;
+    }
+
+    .card-body{
+      min-height:340px;
+      overflow:visible !important;
+    }
+
+    .title{
+      min-height:58px !important;
+      max-height:none !important;
+      -webkit-line-clamp:3;
+    }
+
+    .price-zone{
+      margin-top:auto !important;
+      padding-bottom:2px;
+    }
+
+    .card-actions{
+      flex-shrink:0;
+    }
+
+    @media(max-width:900px){
+      .gem-category-toolbar{
+        position:relative !important;
+        top:auto !important;
+        min-height:unset !important;
+        padding:10px 14px !important;
+      }
+      .gem-card-area{padding:10px 14px 16px !important;}
+      .category-card{min-height:172px !important;}
+      .card{min-height:auto !important;}
+      .card-body{min-height:auto;}
+    }
+
   </style>
+<body>
 <header class="topbar">
     <div class="topbar-inner">
       <div class="logo" style="display:flex; align-items:center; gap: 15px; text-align: left;">
@@ -3276,13 +3436,17 @@
       }
 
     function showLoader(text){
-      document.getElementById("loader").classList.remove("hidden");
-      document.getElementById("loader").textContent = text;
+      const loader = document.getElementById("loader");
+      loader.style.display = "block";
+      loader.classList.remove("hidden");
+      loader.textContent = text;
       ["categoryView","productView"].forEach(x => document.getElementById(x).classList.add("hidden"));
     }
 
     function hideLoader(){
-      document.getElementById("loader").classList.add("hidden");
+      const loader = document.getElementById("loader");
+      loader.classList.add("hidden");
+      loader.style.display = "none";
     }
 
     function getSearchTerm(){
