@@ -107,7 +107,7 @@
       width:100%;
       max-width:none;
       margin:0;
-      padding:8px 10px 80px;
+      padding:24px 14px 80px;
     }
 
     .hero{
@@ -437,7 +437,8 @@
     }
 
     .action-btn,
-    .small-btn{
+    .small-btn,
+    .back-btn{
       border:1px solid var(--line);
       background:#fff;
       color:var(--dark);
@@ -445,6 +446,24 @@
       padding:8px 12px;
       font-weight:900;
       cursor:pointer;
+    }
+
+    .back-btn {
+      background: var(--blue);
+      color: #fff;
+      font-size: 14px;
+      padding: 10px 16px;
+      border: 1px solid var(--blue);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0,115,207,0.2);
+    }
+    
+    .back-btn:hover {
+      background: #006eb6;
+      transform: translateY(-1px);
     }
 
     .small-btn{
@@ -1463,11 +1482,11 @@
 
     <section id="productView" class="hidden">
       <div class="toolbar">
-        <div class="tools-left" style="align-items:flex-start; flex-direction:column; gap:10px; width:100%;">
-          <div style="display:flex; align-items:center; gap:8px;">
-            <button class="small-btn" onclick="backToCategories()">Back</button>
+        <div class="tools-left" style="align-items:flex-start; flex-direction:column; gap:12px; width:100%;">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <button class="back-btn" onclick="backToCategories()">← Back to Categories</button>
             <button class="small-btn mobile-filter-btn" onclick="toggleFilters(true)">Filters</button>
-            <span class="category-title" id="categoryTitle"></span>
+            <span class="category-title" id="categoryTitle" style="margin-left: 10px;"></span>
           </div>
           <!-- Active Filter Pills Container -->
           <div id="activeFiltersContainer" style="width:100%;"></div>
