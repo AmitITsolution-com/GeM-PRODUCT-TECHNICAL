@@ -1537,7 +1537,10 @@
         fetch(GAS_API_URL + '/' + action, {
           method: 'POST',
           body: JSON.stringify(payload),
-          headers: { 'Content-Type': 'application/json;charset=utf-8' }
+          headers: { 
+            'Content-Type': 'application/json;charset=utf-8',
+            'ngrok-skip-browser-warning': 'true'
+          }
         })
         .then(res => res.json())
         .then(data => onSuccess && onSuccess(data))
@@ -3596,5 +3599,3 @@
   </script>
 </body>
 </html>
-
-
