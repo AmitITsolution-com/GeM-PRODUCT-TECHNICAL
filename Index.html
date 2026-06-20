@@ -1524,7 +1524,9 @@
   </div>
 
   <script>
-    const GAS_API_URL = "https://script.google.com/macros/s/AKfycbxZrjT6SgKU7urXfh_2NTCNsY8YrfyCAFjRuivuTfFPeM5rAE6yomkulWD6YcWL4tGPIw/exec";
+    // Configuration
+    const GAS_API_URL = "http://127.0.0.1:8000"; // Local API Database
+    const CACHE_MINUTES = 5;
 
     // --- GitHub Pages Compatibility Layer ---
     if (typeof google === "undefined" || !google.script) {
@@ -1532,11 +1534,10 @@
       google.script = google.script || {};
       
       function executeApiCall(action, payload, onSuccess, onFailure) {
-        payload.action = action;
-        fetch(GAS_API_URL, {
+        fetch(GAS_API_URL + '/' + action, {
           method: 'POST',
           body: JSON.stringify(payload),
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' }
+          headers: { 'Content-Type': 'application/json;charset=utf-8' }
         })
         .then(res => res.json())
         .then(data => onSuccess && onSuccess(data))
